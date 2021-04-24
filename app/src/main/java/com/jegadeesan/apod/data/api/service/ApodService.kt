@@ -1,7 +1,7 @@
 package com.jegadeesan.apod.data.api.service
 
 import com.jegadeesan.apod.BuildConfig
-import com.jegadeesan.apod.domain.data.ApodApi
+import com.jegadeesan.apod.data.api.data.ApodApi
 import retrofit2.http.GET
 import retrofit2.http.Query
 

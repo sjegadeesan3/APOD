@@ -1,4 +1,5 @@
-package com.jegadeesan.apod.domain.data
+package com.jegadeesan.apod.data.api.data
+
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 

@@ -17,4 +17,7 @@ interface ApodDao {
 
     @Query("SELECT * FROM apod")
     suspend fun getAllApod(): List<ApodEntity>
+
+    @Query("SELECT * FROM apod WHERE date = :date LIMIT 1")
+    suspend fun getApod(date: String): ApodEntity?
 }

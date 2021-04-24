@@ -1,13 +1,25 @@
 package com.jegadeesan.apod.domain.data
+import androidx.annotation.Keep
+import com.google.gson.annotations.SerializedName
 
-data class APODItem(
-    val copyright: String,
-    val date: String,
-    val explanation: String,
-    val hdurl: String,
-    val media_type: String,
-    val service_version: String,
-    val thumbnail_url: String,
-    val title: String,
-    val url: String
+@Keep
+data class ApodItem(
+    @SerializedName("copyright")
+    val copyright: String? = null,
+    @SerializedName("date")
+    val date: String? = null,
+    @SerializedName("explanation")
+    val explanation: String? = null,
+    @SerializedName("hdurl")
+    val hdurl: String? = null,
+    @SerializedName("media_type")
+    val mediaType: String? = null,
+    @SerializedName("service_version")
+    val serviceVersion: String? = null,
+    @SerializedName("thumbnail_url")
+    val thumbnailUrl: String? = null,
+    @SerializedName("title")
+    val title: String? = null,
+    @SerializedName("url")
+    val url: String? = null
 )

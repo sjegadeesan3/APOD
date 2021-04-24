@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.jegadeesan.apod.ui.fragment.FirstFragment"
+        android:name="com.jegadeesan.apod.ui.fragment.ApodFragment"
         tools:layout="@layout/fragment_first"/>
 
 </navigation>

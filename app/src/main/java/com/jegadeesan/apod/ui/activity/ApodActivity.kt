@@ -12,7 +12,7 @@ import android.view.MenuItem
 import com.jegadeesan.apod.R
 import com.jegadeesan.apod.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class ApodActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding

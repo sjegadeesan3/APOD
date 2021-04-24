@@ -10,7 +10,7 @@ import com.jegadeesan.apod.R
 import com.jegadeesan.apod.databinding.FragmentFirstBinding
 import com.jegadeesan.apod.domain.usecase.GetApodByDateUseCase
 
-class FirstFragment : Fragment() {
+class ApodFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
 

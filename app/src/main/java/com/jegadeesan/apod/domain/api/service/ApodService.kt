@@ -1,4 +1,4 @@
-package com.jegadeesan.apod.domain.api
+package com.jegadeesan.apod.domain.api.service
 
 import com.jegadeesan.apod.BuildConfig
 import com.jegadeesan.apod.domain.data.ApodItem

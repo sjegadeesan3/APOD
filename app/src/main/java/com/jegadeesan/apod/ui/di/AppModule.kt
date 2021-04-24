@@ -8,6 +8,8 @@ import com.jegadeesan.apod.data.repository.datasourceImpl.ApodLocalDataSourceImp
 import com.jegadeesan.apod.data.repository.datasourceImpl.ApodRemoteDataSourceImpl
 import com.jegadeesan.apod.domain.repository.ApodRepository
 import com.jegadeesan.apod.domain.usecase.GetApodByDateUseCase
+import com.jegadeesan.apod.ui.viewmodel.ApodViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
@@ -18,4 +20,6 @@ val appModule = module {
     factory<ApodLocalDataSource> { ApodLocalDataSourceImpl(get()) }
 
     single { get<Retrofit>().create(ApodService::class.java) }
+
+    viewModel { ApodViewModel() }
 }

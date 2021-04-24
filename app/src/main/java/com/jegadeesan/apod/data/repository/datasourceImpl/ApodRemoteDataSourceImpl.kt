@@ -8,6 +8,6 @@ import com.jegadeesan.apod.domain.data.Apod
 class ApodRemoteDataSourceImpl(private val apodService: ApodService) : ApodRemoteDataSource {
 
     override suspend fun getApod(date: String): Apod {
-        return apodService.getApodByDate(date = date).toApod()
+        return apodService.getApodByDate(date = date).body()?.toApod() ?: Apod()
     }
 }

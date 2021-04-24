@@ -3,7 +3,7 @@ import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
 @Keep
-data class ApodItem(
+data class ApodApi(
     @SerializedName("copyright")
     val copyright: String? = null,
     @SerializedName("date")
@@ -11,7 +11,7 @@ data class ApodItem(
     @SerializedName("explanation")
     val explanation: String? = null,
     @SerializedName("hdurl")
-    val hdurl: String? = null,
+    val hdUrl: String? = null,
     @SerializedName("media_type")
     val mediaType: String? = null,
     @SerializedName("service_version")

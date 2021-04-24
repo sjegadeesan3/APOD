@@ -1,5 +1,7 @@
 package com.jegadeesan.apod.data.repository
 
+import android.util.Log
+import com.jegadeesan.apod.data.mapper.toApodEntity
 import com.jegadeesan.apod.data.repository.datasource.ApodLocalDataSource
 import com.jegadeesan.apod.data.repository.datasource.ApodRemoteDataSource
 import com.jegadeesan.apod.domain.data.Apod
@@ -12,7 +14,13 @@ class ApodRepositoryImpl(private val apodLocalDataSource: ApodLocalDataSource,
 //    }
 
     override suspend fun getApod(date: String): Apod {
-        return apodLocalDataSource.getApod(date)
-            ?: apodRemoteDataSource.getApod(date)
+        val apod = apodLocalDataSource.getApod(date)
+        return if(apod == null) {
+            val apodApi = apodRemoteDataSource.getApod(date)
+            apodLocalDataSource.saveApod(apodApi.toApodEntity())
+            return apodApi
+        } else {
+            apod
+        }
     }
 }

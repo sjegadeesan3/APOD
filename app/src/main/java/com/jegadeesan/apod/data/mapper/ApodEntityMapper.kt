@@ -13,6 +13,20 @@ fun ApodEntity.toApod(): Apod {
         serviceVersion = serviceVersion,
         thumbnailUrl = thumbnailUrl,
         title = title,
-        url = url,
+        url = url
+    )
+}
+
+fun Apod.toApodEntity() : ApodEntity {
+    return ApodEntity(
+        copyright = copyright,
+        date = date,
+        explanation = explanation,
+        hdUrl = hdUrl,
+        mediaType = mediaType,
+        serviceVersion = serviceVersion,
+        thumbnailUrl = thumbnailUrl,
+        title = title,
+        url = url
     )
 }

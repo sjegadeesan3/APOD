@@ -1,4 +1,4 @@
-package com.jegadeesan.apod.ui
+package com.jegadeesan.apod.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.jegadeesan.apod.R
 import com.jegadeesan.apod.databinding.FragmentFirstBinding
+import com.jegadeesan.apod.domain.usecase.GetApodByDateUseCase
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.

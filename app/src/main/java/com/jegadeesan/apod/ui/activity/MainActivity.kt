@@ -1,4 +1,4 @@
-package com.jegadeesan.apod.ui
+package com.jegadeesan.apod.ui.activity
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar

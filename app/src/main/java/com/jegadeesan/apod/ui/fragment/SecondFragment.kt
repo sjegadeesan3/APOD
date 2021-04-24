@@ -1,4 +1,4 @@
-package com.jegadeesan.apod.ui
+package com.jegadeesan.apod.ui.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

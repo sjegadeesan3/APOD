@@ -7,9 +7,9 @@ import com.jegadeesan.apod.domain.repository.ApodRepository
 
 class ApodRepositoryImpl(private val apodLocalDataSource: ApodLocalDataSource,
                          private val apodRemoteDataSource: ApodRemoteDataSource): ApodRepository {
-    override suspend fun getLast30DaysApodFromSpecifiedDate(startEnd: String, endDate: String): List<Apod> {
-        //ToDo: Implement
-    }
+//    override suspend fun getLast30DaysApodFromSpecifiedDate(startEnd: String, endDate: String): List<Apod> {
+//        //ToDo: Implement
+//    }
 
     override suspend fun getApod(date: String): Apod {
         return apodLocalDataSource.getApod(date)

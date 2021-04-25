@@ -57,6 +57,7 @@ class ApodActivity : AppCompatActivity() {
             )
             val date = apodViewModel.getFormattedDate(mCalendar.time)
             Snackbar.make(view, date, Snackbar.LENGTH_LONG).show()
+            apodViewModel.getApod(mCalendar.time)
         }.setNegativeButton(R.string.button_cancel
         ) { dialog, _ -> dialog.dismiss() }
         mDialog.create()

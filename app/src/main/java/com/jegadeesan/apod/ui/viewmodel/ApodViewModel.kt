@@ -17,25 +17,26 @@ import java.util.*
 
 class ApodViewModel : ViewModel(), KoinComponent {
 
-//    private val getApodByDateUseCase: GetApodByDateUseCase by inject()
+    private val getApodByDateUseCase: GetApodByDateUseCase by inject()
     private val getLatestApodListUseCase: GetLatestApodListUseCase by inject()
 
-//    private val mTestLiveData = MutableLiveData<String>()
-//    private val testLiveData : LiveData<String>
-//        get() = mTestLiveData
+    private val mApodLiveDate = MutableLiveData<Apod>()
+    val apodLiveDate : LiveData<Apod>
+        get() = mApodLiveDate
 
     private val mLatest30DaysApod = MutableLiveData<List<Apod>>()
     private val latest30DaysApod : LiveData<List<Apod>>
         get() = mLatest30DaysApod
 
-//    fun test(): LiveData<String> {
-//        viewModelScope.launch(Dispatchers.IO) {
-//            val a = getApodByDateUseCase.execute("2021-02-01")
-//            mTestLiveData.postValue(a?.hdUrl ?: "")
-//            Log.d("ApodViewModelLog", a?.date ?: "")
-//        }
-//        return testLiveData
-//    }
+    fun getApod(date: Date) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val selectedDate = DateTimeUtil.convertDateToString(date)
+            val result = getApodByDateUseCase.execute(selectedDate)
+            result?.let { apod ->
+                mApodLiveDate.postValue(apod)
+            }
+        }
+    }
 
     fun getLatest30DaysApodData(): LiveData<List<Apod>> {
         viewModelScope.launch(Dispatchers.IO) {

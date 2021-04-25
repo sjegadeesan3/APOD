@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jegadeesan.apod.R
 import com.jegadeesan.apod.databinding.FragmentFirstBinding
+import com.jegadeesan.apod.domain.data.Apod
 import com.jegadeesan.apod.domain.usecase.GetApodByDateUseCase
 import com.jegadeesan.apod.ui.adapter.ApodRecyclerView
 import com.jegadeesan.apod.ui.viewmodel.ApodViewModel
@@ -23,6 +24,7 @@ class ApodFragment : Fragment() {
 
     private val binding get() = _binding
     private val apodViewModel: ApodViewModel by sharedViewModel()
+    private var apodList = arrayListOf<Apod>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,14 +37,25 @@ class ApodFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getLatest30DaysApodData()
+        getApod()
     }
 
     private fun getLatest30DaysApodData() {
         apodViewModel.getLatest30DaysApodData().observe(viewLifecycleOwner, { apodList ->
+            this.apodList.addAll(apodList)
             val layoutManager = LinearLayoutManager(view?.context, LinearLayoutManager.VERTICAL, false)
             binding?.recyclerView?.layoutManager = layoutManager
-            binding?.recyclerView?.adapter = ApodRecyclerView(apodList)
+            binding?.recyclerView?.adapter = ApodRecyclerView(this.apodList)
             binding?.recyclerView?.setHasFixedSize(true)
+        })
+    }
+
+
+    private fun getApod() {
+        apodViewModel.apodLiveDate.observe(viewLifecycleOwner, { apod ->
+            this.apodList.add(0, apod)
+            binding?.recyclerView?.adapter?.notifyItemInserted(0);
+            binding?.recyclerView?.adapter?.notifyDataSetChanged()
         })
     }
 

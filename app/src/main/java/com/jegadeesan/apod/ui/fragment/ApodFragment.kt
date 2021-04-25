@@ -7,9 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.jegadeesan.apod.R
 import com.jegadeesan.apod.databinding.FragmentFirstBinding
 import com.jegadeesan.apod.domain.usecase.GetApodByDateUseCase
+import com.jegadeesan.apod.ui.adapter.ApodRecyclerView
 import com.jegadeesan.apod.ui.viewmodel.ApodViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -35,11 +38,16 @@ class ApodFragment : Fragment() {
 
     private fun getLatest30DaysApodData() {
         apodViewModel.getLatest30DaysApodData().observe(viewLifecycleOwner, { apodList ->
-            var s = "Size ${apodList.size}, "
-            apodList?.let {
-                var s = "$s hdUrl ${apodList[0].hdUrl} --> ${apodList[1].hdUrl}"
-                binding?.test?.text = s
-            }
+            val layoutManager = LinearLayoutManager(view?.context, LinearLayoutManager.VERTICAL, false)
+            binding?.recyclerView?.layoutManager = layoutManager
+            binding?.recyclerView?.adapter = ApodRecyclerView(apodList)
+//
+//            binding.recycler_view
+//            var s = "Size ${apodList.size}, "
+//            apodList?.let {
+//                var s = "$s hdUrl ${apodList[0].hdUrl} --> ${apodList[1].hdUrl}"
+//                binding?.test?.text = s
+//            }
 
         })
     }

@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.jegadeesan.apod.data.db.entity.ApodEntity
+import java.util.*
 
 @Dao
 interface ApodDao {
@@ -18,6 +19,9 @@ interface ApodDao {
     @Query("SELECT * FROM apod")
     suspend fun getAllApod(): List<ApodEntity>
 
-    @Query("SELECT * FROM apod WHERE date = :date LIMIT 1")
-    suspend fun getApod(date: String): ApodEntity?
+    @Query("SELECT * FROM apod WHERE date BETWEEN :date AND :date LIMIT 1")
+    suspend fun getApod(date: Date): ApodEntity?
+
+    @Query("SELECT * FROM apod WHERE date BETWEEN :startDate AND :endDate")
+    suspend fun getApodList(startDate: Date, endDate: Date): List<ApodEntity>
 }

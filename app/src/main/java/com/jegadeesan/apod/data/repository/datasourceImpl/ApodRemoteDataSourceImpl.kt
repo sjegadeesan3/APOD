@@ -10,4 +10,18 @@ class ApodRemoteDataSourceImpl(private val apodService: ApodService) : ApodRemot
     override suspend fun getApod(date: String): Apod {
         return apodService.getApodByDate(date = date).body()?.toApod() ?: Apod()
     }
+
+    override suspend fun getApodFromSpecifiedDate(startDate: String, endDate: String): List<Apod> {
+        val apodList = arrayListOf<Apod>()
+        val body = apodService.getApodList(
+            startDate = startDate,
+            endDate = endDate
+        ).body()
+        body?.let {
+            it.forEach {
+                apodList.add(it.toApod())
+            }
+        }
+        return apodList
+    }
 }

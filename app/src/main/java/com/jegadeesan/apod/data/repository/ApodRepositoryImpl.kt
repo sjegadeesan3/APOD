@@ -1,5 +1,6 @@
 package com.jegadeesan.apod.data.repository
 
+import android.util.Log
 import com.jegadeesan.apod.data.db.entity.ApodEntity
 import com.jegadeesan.apod.data.mapper.toApodEntity
 import com.jegadeesan.apod.data.repository.datasource.ApodLocalDataSource
@@ -10,10 +11,10 @@ import com.jegadeesan.apod.domain.repository.ApodRepository
 class ApodRepositoryImpl(private val apodLocalDataSource: ApodLocalDataSource,
                          private val apodRemoteDataSource: ApodRemoteDataSource): ApodRepository {
 
-    override suspend fun getApodFromSpecifiedDate(startEnd: String, endDate: String): List<Apod> {
-        val apod = apodLocalDataSource.getApodFromSpecifiedDate(startEnd, endDate)
+    override suspend fun getApodFromSpecifiedDate(startDate: String, endDate: String): List<Apod> {
+        val apod = apodLocalDataSource.getApodFromSpecifiedDate(startDate, endDate)
         return if(apod == null) {
-            val apodApiList = apodRemoteDataSource.getApodFromSpecifiedDate(startEnd, endDate)
+            val apodApiList = apodRemoteDataSource.getApodFromSpecifiedDate(startDate, endDate)
             saveApodListInDb(apodApiList)
             return apodApiList
         } else {
@@ -34,8 +35,10 @@ class ApodRepositoryImpl(private val apodLocalDataSource: ApodLocalDataSource,
         return if(apod == null) {
             val apodApi = apodRemoteDataSource.getApod(date)
             apodLocalDataSource.saveApod(apodApi.toApodEntity())
+            Log.d("ApodRepositoryImpl", "apod == null")
             return apodApi
         } else {
+            Log.d("ApodRepositoryImpl", "apod != null")
             apod
         }
     }

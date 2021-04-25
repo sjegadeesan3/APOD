@@ -1,4 +1,4 @@
-package com.jegadeesan.apod.ui.util
+package com.jegadeesan.apod.data.util
 
 import java.text.SimpleDateFormat
 import java.util.*
@@ -16,5 +16,21 @@ object DateTimeUtil {
         cal.time = Date()
         cal.add(Calendar.DAY_OF_MONTH, -noOfDaysBefore)
         return SimpleDateFormat(DATE_FORMAT, Locale.getDefault()).format(cal.time)
+    }
+
+    fun convertStringToDate(dateInString: String?): Date? {
+        dateInString?.let {
+            return SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH).parse(dateInString)
+        } ?:run {
+            return null
+        }
+    }
+
+    fun convertDateToString(date: Date?): String {
+        date?.let {
+            return SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH).format(it)
+        } ?:run {
+            return ""
+        }
     }
 }

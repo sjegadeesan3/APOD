@@ -6,4 +6,5 @@ import com.jegadeesan.apod.domain.data.Apod
 interface ApodRemoteDataSource {
 
     suspend fun getApod(date: String): Apod
+    suspend fun getApodFromSpecifiedDate(startEnd: String, endDate: String): List<Apod>
 }

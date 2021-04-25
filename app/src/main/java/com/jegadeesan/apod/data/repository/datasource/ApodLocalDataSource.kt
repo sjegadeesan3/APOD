@@ -8,4 +8,8 @@ interface ApodLocalDataSource {
     suspend fun getApod(date: String): Apod?
 
     suspend fun saveApod(apodEntity: ApodEntity)
+
+    suspend fun saveApodList(apodEntity: List<ApodEntity>)
+
+    suspend fun getApodFromSpecifiedDate(startEnd: String, endDate: String): List<Apod>?
 }

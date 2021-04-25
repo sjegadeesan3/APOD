@@ -15,4 +15,12 @@ class ApodLocalDataSourceImpl(private val apodDao: ApodDao) : ApodLocalDataSourc
     override suspend fun saveApod(apodEntity: ApodEntity) {
         apodDao.saveApod(apodEntity)
     }
+
+    override suspend fun saveApodList(apodEntity: List<ApodEntity>) {
+        apodDao.saveApodList(apodEntity)
+    }
+
+    override suspend fun getApodFromSpecifiedDate(startEnd: String, endDate: String): List<Apod>? {
+        return null
+    }
 }

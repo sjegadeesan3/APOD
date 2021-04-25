@@ -30,6 +30,7 @@ class ApodRecyclerView(val apodList: List<Apod>) : RecyclerView.Adapter<ApodRecy
         fun setUi(apod: Apod) {
             binding.date.text = apod.date
             binding.title.text = apod.title
+            binding.explaination.text = apod.explanation
             if (apod.thumbnailUrl.isNullOrEmpty()) {
                 Glide
                     .with(binding.root.context)

@@ -54,7 +54,6 @@ class ApodFragment : Fragment() {
     private fun getApod() {
         apodViewModel.apodLiveDate.observe(viewLifecycleOwner, { apod ->
             this.apodList.add(0, apod)
-            binding?.recyclerView?.adapter?.notifyItemInserted(0);
             binding?.recyclerView?.adapter?.notifyDataSetChanged()
         })
     }

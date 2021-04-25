@@ -11,8 +11,20 @@ import com.jegadeesan.apod.domain.repository.ApodRepository
 class ApodRepositoryImpl(private val apodLocalDataSource: ApodLocalDataSource,
                          private val apodRemoteDataSource: ApodRemoteDataSource): ApodRepository {
 
-    override suspend fun getApodFromSpecifiedDate(startDate: String, endDate: String): List<Apod> {
-        val apod = apodLocalDataSource.getApodFromSpecifiedDate(startDate, endDate)
+    private suspend fun saveApodListInDb(apodApiList: List<Apod>) {
+        val apodEntityList = arrayListOf<ApodEntity>()
+        apodApiList.forEach { apodApi ->
+            apodEntityList.add(apodApi.toApodEntity())
+        }
+        apodLocalDataSource.saveApodList(apodEntityList)
+    }
+
+    override suspend fun getApodFromSpecifiedDate(
+        startDate: String,
+        endDate: String,
+        count: Int
+    ): List<Apod> {
+        val apod = apodLocalDataSource.getApodFromSpecifiedDate(startDate, endDate, count)
         return if(apod == null) {
             val apodApiList = apodRemoteDataSource.getApodFromSpecifiedDate(startDate, endDate)
             saveApodListInDb(apodApiList)
@@ -20,14 +32,6 @@ class ApodRepositoryImpl(private val apodLocalDataSource: ApodLocalDataSource,
         } else {
             apod
         }
-    }
-
-    private suspend fun saveApodListInDb(apodApiList: List<Apod>) {
-        val apodEntityList = arrayListOf<ApodEntity>()
-        apodApiList.forEach { apodApi ->
-            apodEntityList.add(apodApi.toApodEntity())
-        }
-        apodLocalDataSource.saveApodList(apodEntityList)
     }
 
     override suspend fun getApod(date: String): Apod {

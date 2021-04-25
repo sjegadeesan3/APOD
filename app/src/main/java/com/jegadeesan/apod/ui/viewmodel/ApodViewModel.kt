@@ -40,6 +40,8 @@ class ApodViewModel : ViewModel(), KoinComponent {
             val latestApodList = getLatestApodListUseCase.execute(30)
             latestApodList?.let {
                 mLatest30DaysApod.postValue(it)
+            } ?: run {
+                mLatest30DaysApod.postValue(listOf())
             }
         }
         return latest30DaysApod

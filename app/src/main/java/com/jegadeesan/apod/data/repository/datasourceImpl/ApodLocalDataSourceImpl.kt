@@ -26,7 +26,7 @@ class ApodLocalDataSourceImpl(private val apodDao: ApodDao) : ApodLocalDataSourc
         apodDao.saveApodList(apodEntity)
     }
 
-    override suspend fun getApodFromSpecifiedDate(startDate: String, endDate: String): List<Apod>? {
+    override suspend fun getApodFromSpecifiedDate(startDate: String, endDate: String, count: Int): List<Apod>? {
         val fromDate = convertStringToDate(startDate)
         val toDate = convertStringToDate(endDate)
 
@@ -35,11 +35,15 @@ class ApodLocalDataSourceImpl(private val apodDao: ApodDao) : ApodLocalDataSourc
             apodEntity?.let {
                 val apodlist = arrayListOf<Apod>()
                 val apodEntitylist = apodDao.getApodList(fromDate, toDate)
-                apodEntitylist.forEach {
-                    apodlist.add(it.toApod())
+                return if ( apodEntitylist.size < count) {
+                    null
+                } else {
+                    apodEntitylist.forEach {
+                        apodlist.add(it.toApod())
+                    }
+                    Log.d("ApodLocalDataSourceImpl", "count ${apodEntitylist.size}")
+                    apodlist
                 }
-                Log.d("ApodLocalDataSourceImpl", "count ${apodEntitylist.size}")
-                return apodlist
             } ?: run {
                 return null
             }

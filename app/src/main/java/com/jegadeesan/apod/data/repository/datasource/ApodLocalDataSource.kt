@@ -11,5 +11,5 @@ interface ApodLocalDataSource {
 
     suspend fun saveApodList(apodEntity: List<ApodEntity>)
 
-    suspend fun getApodFromSpecifiedDate(startDate: String, endDate: String): List<Apod>?
+    suspend fun getApodFromSpecifiedDate(startDate: String, endDate: String, count: Int): List<Apod>?
 }

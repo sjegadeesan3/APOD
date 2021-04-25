@@ -12,7 +12,7 @@ class GetLatestApodListUseCase(private val apodRepository: ApodRepository?)
     override suspend fun execute(count: Int): List<Apod>? {
         val startDate = getDateBefore(count-1)
         val endDate = getCurrentDate()
-        return apodRepository?.getApodFromSpecifiedDate(startDate, endDate)
+        return apodRepository?.getApodFromSpecifiedDate(startDate, endDate, count = 30)
     }
 }
 

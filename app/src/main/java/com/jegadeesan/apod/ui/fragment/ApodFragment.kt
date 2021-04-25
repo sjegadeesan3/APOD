@@ -14,6 +14,7 @@ import com.jegadeesan.apod.databinding.FragmentFirstBinding
 import com.jegadeesan.apod.domain.usecase.GetApodByDateUseCase
 import com.jegadeesan.apod.ui.adapter.ApodRecyclerView
 import com.jegadeesan.apod.ui.viewmodel.ApodViewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ApodFragment : Fragment() {
@@ -21,7 +22,7 @@ class ApodFragment : Fragment() {
     private var _binding: FragmentFirstBinding? = null
 
     private val binding get() = _binding
-    private val apodViewModel: ApodViewModel by viewModel()
+    private val apodViewModel: ApodViewModel by sharedViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,14 +42,7 @@ class ApodFragment : Fragment() {
             val layoutManager = LinearLayoutManager(view?.context, LinearLayoutManager.VERTICAL, false)
             binding?.recyclerView?.layoutManager = layoutManager
             binding?.recyclerView?.adapter = ApodRecyclerView(apodList)
-//
-//            binding.recycler_view
-//            var s = "Size ${apodList.size}, "
-//            apodList?.let {
-//                var s = "$s hdUrl ${apodList[0].hdUrl} --> ${apodList[1].hdUrl}"
-//                binding?.test?.text = s
-//            }
-
+            binding?.recyclerView?.setHasFixedSize(true)
         })
     }
 

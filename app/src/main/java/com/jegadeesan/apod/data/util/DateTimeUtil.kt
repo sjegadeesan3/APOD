@@ -26,9 +26,9 @@ object DateTimeUtil {
         }
     }
 
-    fun convertDateToString(date: Date?): String {
+    fun convertDateToString(date: Date?, format: String = DATE_FORMAT): String {
         date?.let {
-            return SimpleDateFormat(DATE_FORMAT, Locale.ENGLISH).format(it)
+            return SimpleDateFormat(format, Locale.ENGLISH).format(it)
         } ?:run {
             return ""
         }

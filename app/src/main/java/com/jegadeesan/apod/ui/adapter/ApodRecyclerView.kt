@@ -36,6 +36,7 @@ class ApodRecyclerView(val apodList: List<Apod>) : RecyclerView.Adapter<ApodRecy
                     .load(apod.url)
                     .placeholder(R.drawable.default_image)
                     .dontAnimate()
+                    .fitCenter()
                     .into(binding.imageView)
             } else {
                 Glide
@@ -43,6 +44,7 @@ class ApodRecyclerView(val apodList: List<Apod>) : RecyclerView.Adapter<ApodRecy
                     .load(apod.thumbnailUrl)
                     .placeholder(R.drawable.default_image)
                     .dontAnimate()
+                    .fitCenter()
                     .into(binding.imageView)
 
             }

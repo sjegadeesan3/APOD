@@ -3,7 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginTop="1dp"
+    android:layout_marginBottom="1dp"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
@@ -13,7 +16,9 @@
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:cropToPadding="true"
+        app:cardUseCompatPadding="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -45,6 +50,7 @@
                 android:textStyle="bold"
                 android:textAllCaps="true"
                 android:textSize="28sp"
+                android:padding="5dp"
                 tools:text="The Medusa Nebula"
                 />
 

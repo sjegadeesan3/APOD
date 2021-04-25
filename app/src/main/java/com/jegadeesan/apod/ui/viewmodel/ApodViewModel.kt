@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jegadeesan.apod.data.util.DateTimeUtil
 import com.jegadeesan.apod.domain.data.Apod
 import com.jegadeesan.apod.domain.usecase.GetApodByDateUseCase
 import com.jegadeesan.apod.domain.usecase.GetLatestApodListUseCase
@@ -12,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import java.util.*
 
 class ApodViewModel : ViewModel(), KoinComponent {
 
@@ -45,5 +47,9 @@ class ApodViewModel : ViewModel(), KoinComponent {
             }
         }
         return latest30DaysApod
+    }
+
+    fun getFormattedDate(date: Date): String {
+        return DateTimeUtil.convertDateToString(date, "dd/MMM/yyyy")
     }
 }
